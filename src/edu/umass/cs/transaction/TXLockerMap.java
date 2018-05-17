@@ -1,10 +1,10 @@
-package edu.umass.cs.txn;
+package edu.umass.cs.transaction;
 
 import edu.umass.cs.gigapaxos.interfaces.ClientRequest;
 import edu.umass.cs.reconfiguration.AbstractReplicaCoordinator;
-import edu.umass.cs.txn.exceptions.TXException;
-import edu.umass.cs.txn.exceptions.TxnState;
-import edu.umass.cs.txn.interfaces.TXLocker;
+import edu.umass.cs.transaction.exceptions.TXException;
+import edu.umass.cs.transaction.exceptions.TxnState;
+import edu.umass.cs.transaction.interfaces.TXLocker;
 import org.omg.SendingContext.RunTime;
 
 import java.util.HashMap;

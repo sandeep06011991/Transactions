@@ -1,9 +1,9 @@
-package edu.umass.cs.txn.interfaces;
+package edu.umass.cs.transaction.interfaces;
 
 import edu.umass.cs.gigapaxos.interfaces.ClientRequest;
-import edu.umass.cs.txn.exceptions.TXException;
-import edu.umass.cs.txn.exceptions.TxnState;
-import edu.umass.cs.txn.txpackets.TxState;
+import edu.umass.cs.transaction.exceptions.TXException;
+import edu.umass.cs.transaction.exceptions.TxnState;
+import edu.umass.cs.transaction.txpackets.TxState;
 
 import java.util.Set;
 

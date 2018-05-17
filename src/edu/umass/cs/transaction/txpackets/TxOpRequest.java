@@ -1,4 +1,4 @@
-package edu.umass.cs.txn.txpackets;
+package edu.umass.cs.transaction.txpackets;
 
 import edu.umass.cs.gigapaxos.interfaces.ClientRequest;
 import edu.umass.cs.nio.JSONPacket;
@@ -10,7 +10,7 @@ import org.json.JSONObject;
 import edu.umass.cs.gigapaxos.interfaces.AppRequestParser;
 import edu.umass.cs.gigapaxos.interfaces.Request;
 import edu.umass.cs.reconfiguration.reconfigurationutils.RequestParseException;
-import edu.umass.cs.txn.interfaces.TxOp;
+import edu.umass.cs.transaction.interfaces.TxOp;
 import redis.clients.jedis.Client;
 
 import java.util.Random;

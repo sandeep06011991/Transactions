@@ -1,12 +1,12 @@
-package edu.umass.cs.txn.txpackets;
+package edu.umass.cs.transaction.txpackets;
 
 import edu.umass.cs.gigapaxos.interfaces.ClientRequest;
 import edu.umass.cs.gigapaxos.interfaces.Request;
 import edu.umass.cs.gigapaxos.interfaces.RequestIdentifier;
 import edu.umass.cs.nio.JSONPacket;
 import edu.umass.cs.nio.interfaces.IntegerPacketType;
-import edu.umass.cs.txn.Transaction;
-import edu.umass.cs.txn.exceptions.ResponseCode;
+import edu.umass.cs.transaction.Transaction;
+import edu.umass.cs.transaction.exceptions.ResponseCode;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;

@@ -1,4 +1,4 @@
-package edu.umass.cs.txn.txpackets;
+package edu.umass.cs.transaction.txpackets;
 
 import edu.umass.cs.nio.interfaces.IntegerPacketType;
 import org.json.JSONException;

@@ -1,14 +1,14 @@
-package edu.umass.cs.txn.protocol;
+package edu.umass.cs.transaction.protocol;
 
 import edu.umass.cs.gigapaxos.interfaces.Request;
 import edu.umass.cs.nio.GenericMessagingTask;
 import edu.umass.cs.protocoltask.ProtocolExecutor;
 import edu.umass.cs.protocoltask.SchedulableProtocolTask;
-import edu.umass.cs.txn.Transaction;
-import edu.umass.cs.txn.exceptions.ResponseCode;
-import edu.umass.cs.txn.txpackets.TXPacket;
-import edu.umass.cs.txn.txpackets.TxState;
-import edu.umass.cs.txn.txpackets.TxStateRequest;
+import edu.umass.cs.transaction.Transaction;
+import edu.umass.cs.transaction.exceptions.ResponseCode;
+import edu.umass.cs.transaction.txpackets.TXPacket;
+import edu.umass.cs.transaction.txpackets.TxState;
+import edu.umass.cs.transaction.txpackets.TxStateRequest;
 
 import java.util.ArrayList;
 import java.util.Set;

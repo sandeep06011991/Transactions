@@ -1,4 +1,4 @@
-package edu.umass.cs.txn.exceptions;
+package edu.umass.cs.transaction.exceptions;
 
 /**
  * @author arun

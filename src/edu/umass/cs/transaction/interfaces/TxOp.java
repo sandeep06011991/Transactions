@@ -1,4 +1,4 @@
-package edu.umass.cs.txn.interfaces;
+package edu.umass.cs.transaction.interfaces;
 
 import edu.umass.cs.gigapaxos.interfaces.ClientRequest;
 import edu.umass.cs.gigapaxos.interfaces.Request;

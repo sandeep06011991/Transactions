@@ -1,4 +1,4 @@
-package edu.umass.cs.txn;
+package edu.umass.cs.transaction;
 
 import java.net.InetSocketAddress;
 
@@ -14,7 +14,7 @@ import edu.umass.cs.nio.JSONPacket;
 import edu.umass.cs.reconfiguration.reconfigurationpackets.ClientReconfigurationPacket;
 import edu.umass.cs.reconfiguration.reconfigurationpackets.DeleteServiceName;
 import edu.umass.cs.reconfiguration.reconfigurationutils.RequestParseException;
-import edu.umass.cs.txn.interfaces.TxOp;
+import edu.umass.cs.transaction.interfaces.TxOp;
 import edu.umass.cs.utils.GCConcurrentHashMap;
 import org.json.JSONArray;
 import org.json.JSONException;

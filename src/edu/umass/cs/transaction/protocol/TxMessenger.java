@@ -1,4 +1,4 @@
-package edu.umass.cs.txn.protocol;
+package edu.umass.cs.transaction.protocol;
 
 
 import edu.umass.cs.gigapaxos.interfaces.Request;
@@ -12,10 +12,10 @@ import edu.umass.cs.nio.interfaces.NodeConfig;
 import edu.umass.cs.protocoltask.ProtocolExecutor;
 import edu.umass.cs.reconfiguration.AbstractReplicaCoordinator;
 import edu.umass.cs.reconfiguration.ReconfigurableAppClientAsync;
-import edu.umass.cs.txn.DistTransactor;
-import edu.umass.cs.txn.txpackets.TXPacket;
-import edu.umass.cs.txn.txpackets.TxClientResult;
-import edu.umass.cs.txn.txpackets.UnlockRequest;
+import edu.umass.cs.transaction.DistTransactor;
+import edu.umass.cs.transaction.txpackets.TXPacket;
+import edu.umass.cs.transaction.txpackets.TxClientResult;
+import edu.umass.cs.transaction.txpackets.UnlockRequest;
 import org.json.JSONException;
 
 import java.io.IOException;

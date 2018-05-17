@@ -1,4 +1,4 @@
-package edu.umass.cs.txn.testing.app;
+package edu.umass.cs.transaction.testing.app;
 
 import edu.umass.cs.gigapaxos.interfaces.ClientRequest;
 import edu.umass.cs.nio.JSONPacket;

@@ -1,6 +1,6 @@
-package edu.umass.cs.txn.txpackets;
+package edu.umass.cs.transaction.txpackets;
 import edu.umass.cs.gigapaxos.interfaces.AppRequestParser;
-import edu.umass.cs.txn.Transaction;
+import edu.umass.cs.transaction.Transaction;
 import org.json.JSONException;
 import org.json.JSONObject;
 

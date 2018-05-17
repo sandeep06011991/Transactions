@@ -1,4 +1,4 @@
-package edu.umass.cs.txn.protocol;
+package edu.umass.cs.transaction.protocol;
 
 import com.sun.org.apache.regexp.internal.RE;
 import edu.umass.cs.gigapaxos.interfaces.Request;
@@ -7,10 +7,10 @@ import edu.umass.cs.nio.JSONMessenger;
 import edu.umass.cs.protocoltask.ProtocolEvent;
 import edu.umass.cs.protocoltask.ProtocolExecutor;
 import edu.umass.cs.protocoltask.ProtocolTask;
-import edu.umass.cs.txn.DistTransactor;
-import edu.umass.cs.txn.Transaction;
-import edu.umass.cs.txn.exceptions.ResponseCode;
-import edu.umass.cs.txn.txpackets.*;
+import edu.umass.cs.transaction.DistTransactor;
+import edu.umass.cs.transaction.Transaction;
+import edu.umass.cs.transaction.exceptions.ResponseCode;
+import edu.umass.cs.transaction.txpackets.*;
 
 import java.util.*;
 import java.util.logging.Level;

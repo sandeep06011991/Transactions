@@ -1,4 +1,4 @@
-package edu.umass.cs.txn;
+package edu.umass.cs.transaction;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -16,8 +16,8 @@ import edu.umass.cs.reconfiguration.ReconfigurationConfig;
 import edu.umass.cs.reconfiguration.interfaces.GigaPaxosClient;
 import edu.umass.cs.reconfiguration.reconfigurationpackets.RequestActiveReplicas;
 import edu.umass.cs.reconfiguration.reconfigurationutils.RequestParseException;
-import edu.umass.cs.txn.txpackets.TXPacket;
-import edu.umass.cs.txn.txpackets.TxStateRequest;
+import edu.umass.cs.transaction.txpackets.TXPacket;
+import edu.umass.cs.transaction.txpackets.TxStateRequest;
 
 /**
  * @author arun

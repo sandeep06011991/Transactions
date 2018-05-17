@@ -1,4 +1,4 @@
-package edu.umass.cs.txn;
+package edu.umass.cs.transaction;
 
 import java.io.IOException;
 import java.util.HashSet;
@@ -14,7 +14,7 @@ import edu.umass.cs.reconfiguration.ReconfigurationConfig.RC;
 import edu.umass.cs.reconfiguration.interfaces.CoordinatorCallback;
 import edu.umass.cs.reconfiguration.interfaces.ReconfigurableRequest;
 import edu.umass.cs.reconfiguration.reconfigurationutils.RequestParseException;
-import edu.umass.cs.txn.txpackets.TXPacket;
+import edu.umass.cs.transaction.txpackets.TXPacket;
 import edu.umass.cs.utils.Config;
 
 /**

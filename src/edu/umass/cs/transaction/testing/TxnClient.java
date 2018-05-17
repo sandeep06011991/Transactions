@@ -1,14 +1,14 @@
-package edu.umass.cs.txn.testing;
+package edu.umass.cs.transaction.testing;
 
 import edu.umass.cs.gigapaxos.PaxosConfig;
 import edu.umass.cs.gigapaxos.interfaces.*;
 import edu.umass.cs.nio.interfaces.IntegerPacketType;
 import edu.umass.cs.reconfiguration.ReconfigurableAppClientAsync;
 import edu.umass.cs.reconfiguration.reconfigurationpackets.CreateServiceName;
-import edu.umass.cs.txn.testing.app.*;
-import edu.umass.cs.txn.txpackets.TXPacket;
-import edu.umass.cs.txn.txpackets.TxClientRequest;
-import edu.umass.cs.txn.txpackets.TxClientResult;
+import edu.umass.cs.transaction.testing.app.*;
+import edu.umass.cs.transaction.txpackets.TXPacket;
+import edu.umass.cs.transaction.txpackets.TxClientRequest;
+import edu.umass.cs.transaction.txpackets.TxClientResult;
 import org.json.JSONException;
 import org.json.JSONObject;
 

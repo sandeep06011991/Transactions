@@ -1,4 +1,4 @@
-package edu.umass.cs.txn.txpackets;
+package edu.umass.cs.transaction.txpackets;
 
 import edu.umass.cs.protocoltask.ProtocolEvent;
 import org.json.JSONException;
@@ -8,7 +8,7 @@ import edu.umass.cs.gigapaxos.interfaces.ClientRequest;
 import edu.umass.cs.nio.JSONPacket;
 import edu.umass.cs.nio.interfaces.IntegerPacketType;
 import edu.umass.cs.reconfiguration.interfaces.ReplicableRequest;
-import edu.umass.cs.txn.exceptions.ResponseCode;
+import edu.umass.cs.transaction.exceptions.ResponseCode;
 import edu.umass.cs.utils.IntegerPacketTypeMap;
 
 import java.security.Key;

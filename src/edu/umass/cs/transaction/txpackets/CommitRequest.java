@@ -1,9 +1,9 @@
-package edu.umass.cs.txn.txpackets;
+package edu.umass.cs.transaction.txpackets;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import edu.umass.cs.txn.Transaction;
+import edu.umass.cs.transaction.Transaction;
 
 /**
  * @author arun

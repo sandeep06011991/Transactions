@@ -1,4 +1,4 @@
-package edu.umass.cs.txn.testing;
+package edu.umass.cs.transaction.testing;
 
 import edu.umass.cs.gigapaxos.PaxosConfig;
 import edu.umass.cs.gigapaxos.interfaces.*;
@@ -6,13 +6,13 @@ import edu.umass.cs.gigapaxos.paxosutil.RateLimiter;
 import edu.umass.cs.nio.interfaces.IntegerPacketType;
 import edu.umass.cs.reconfiguration.ReconfigurableAppClientAsync;
 import edu.umass.cs.reconfiguration.reconfigurationpackets.CreateServiceName;
-import edu.umass.cs.txn.exceptions.ResponseCode;
-import edu.umass.cs.txn.testing.app.CalculatorTX;
-import edu.umass.cs.txn.testing.app.OperateRequest;
-import edu.umass.cs.txn.testing.app.ResultRequest;
-import edu.umass.cs.txn.txpackets.TXPacket;
-import edu.umass.cs.txn.txpackets.TxClientRequest;
-import edu.umass.cs.txn.txpackets.TxClientResult;
+import edu.umass.cs.transaction.exceptions.ResponseCode;
+import edu.umass.cs.transaction.testing.app.CalculatorTX;
+import edu.umass.cs.transaction.testing.app.OperateRequest;
+import edu.umass.cs.transaction.testing.app.ResultRequest;
+import edu.umass.cs.transaction.txpackets.TXPacket;
+import edu.umass.cs.transaction.txpackets.TxClientRequest;
+import edu.umass.cs.transaction.txpackets.TxClientResult;
 import edu.umass.cs.utils.Util;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -67,7 +67,7 @@ public class Simulator extends ReconfigurableAppClientAsync<Request> {
     static HashMap<ResponseCode,Integer> results = new HashMap<>();
 
    static  String cmdAppend1 = "./bin/gpServer.sh";
-   static String cmdAppend2= "-DgigapaxosConfig=src/edu/umass/cs/txn/testing/gigapaxos.properties";
+   static String cmdAppend2= "-DgigapaxosConfig=src/edu.umass.cs.transaction/testing/gigapaxos.properties";
     private static final Logger log = Logger
             .getLogger(Simulator.class.getName());
     HashMap<String,Boolean> isAlive;

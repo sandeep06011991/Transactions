@@ -1,4 +1,4 @@
-package edu.umass.cs.txn;
+package edu.umass.cs.transaction;
 
 import java.io.IOException;
 import java.util.concurrent.ConcurrentHashMap;
@@ -8,11 +8,11 @@ import edu.umass.cs.gigapaxos.interfaces.ExecutedCallback;
 import edu.umass.cs.gigapaxos.interfaces.Request;
 import edu.umass.cs.nio.interfaces.IntegerPacketType;
 import edu.umass.cs.reconfiguration.interfaces.GigaPaxosClient;
-import edu.umass.cs.txn.txpackets.AbortRequest;
-import edu.umass.cs.txn.txpackets.LockRequest;
-import edu.umass.cs.txn.txpackets.TXPacket;
-import edu.umass.cs.txn.txpackets.TxStateRequest;
-import edu.umass.cs.txn.txpackets.UnlockRequest;
+import edu.umass.cs.transaction.txpackets.AbortRequest;
+import edu.umass.cs.transaction.txpackets.LockRequest;
+import edu.umass.cs.transaction.txpackets.TXPacket;
+import edu.umass.cs.transaction.txpackets.TxStateRequest;
+import edu.umass.cs.transaction.txpackets.UnlockRequest;
 
 /**
  * @author arun

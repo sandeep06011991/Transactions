@@ -13,7 +13,7 @@
  * the License.
  * 
  * Initial developer(s): V. Arun */
-package edu.umass.cs.txn.testing.app;
+package edu.umass.cs.transaction.testing.app;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -28,7 +28,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import edu.umass.cs.reconfiguration.ReconfigurationConfig;
-import edu.umass.cs.txn.DistTransactor;
+import edu.umass.cs.transaction.DistTransactor;
 import org.json.JSONException;
 import org.json.JSONObject;
 

@@ -1,4 +1,4 @@
-package edu.umass.cs.txn.testing.app;
+package edu.umass.cs.transaction.testing.app;
 
 import org.json.JSONException;
 import org.json.JSONObject;

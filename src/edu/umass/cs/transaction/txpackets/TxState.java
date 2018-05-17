@@ -1,6 +1,6 @@
-package edu.umass.cs.txn.txpackets;
+package edu.umass.cs.transaction.txpackets;
 
-import edu.umass.cs.txn.protocol.TxSecondaryProtocolTask;
+import edu.umass.cs.transaction.protocol.TxSecondaryProtocolTask;
 
 public enum TxState {
     INIT,

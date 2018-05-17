@@ -1,4 +1,4 @@
-package edu.umass.cs.txn;
+package edu.umass.cs.transaction;
 
 import java.util.Properties;
 

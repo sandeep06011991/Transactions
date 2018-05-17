@@ -1,4 +1,4 @@
-package edu.umass.cs.txn;
+package edu.umass.cs.transaction;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -8,8 +8,8 @@ import java.util.Set;
 import edu.umass.cs.gigapaxos.interfaces.*;
 import edu.umass.cs.reconfiguration.examples.AppRequest;
 import edu.umass.cs.reconfiguration.examples.NoopAppClient;
-import edu.umass.cs.txn.interfaces.TxOp;
-import edu.umass.cs.txn.txpackets.*;
+import edu.umass.cs.transaction.interfaces.TxOp;
+import edu.umass.cs.transaction.txpackets.*;
 import org.json.JSONException;
 import edu.umass.cs.nio.interfaces.IntegerPacketType;
 import edu.umass.cs.nio.nioutils.NIOHeader;

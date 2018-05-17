@@ -1,4 +1,4 @@
-package edu.umass.cs.txn.txpackets;
+package edu.umass.cs.transaction.txpackets;
 
 import org.json.JSONArray;
 import org.json.JSONException;

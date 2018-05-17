@@ -1,4 +1,4 @@
-package edu.umass.cs.txn.testing;
+package edu.umass.cs.transaction.testing;
 
 import edu.umass.cs.gigapaxos.PaxosConfig;
 import edu.umass.cs.reconfiguration.ReconfigurableNode;
@@ -6,7 +6,7 @@ import edu.umass.cs.reconfiguration.ReconfigurationConfig;
 import edu.umass.cs.reconfiguration.reconfigurationutils.DefaultNodeConfig;
 import edu.umass.cs.reconfiguration.testing.TESTReconfigurationConfig;
 import edu.umass.cs.reconfiguration.testing.TESTReconfigurationMain;
-import edu.umass.cs.txn.TxnClient;
+import edu.umass.cs.transaction.TxnClient;
 import edu.umass.cs.utils.Config;
 import edu.umass.cs.utils.DefaultTest;
 import org.junit.Test;

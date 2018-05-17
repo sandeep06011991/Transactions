@@ -1,4 +1,4 @@
-package edu.umass.cs.txn;
+package edu.umass.cs.transaction;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -21,12 +21,12 @@ import edu.umass.cs.reconfiguration.ReconfigurationConfig.RC;
 import edu.umass.cs.reconfiguration.reconfigurationpackets.RequestActiveReplicas;
 import edu.umass.cs.reconfiguration.reconfigurationutils.RequestParseException;
 
-import edu.umass.cs.txn.exceptions.ResponseCode;
-import edu.umass.cs.txn.exceptions.TXException;
-import edu.umass.cs.txn.exceptions.TxnState;
-import edu.umass.cs.txn.interfaces.TXLocker;
-import edu.umass.cs.txn.protocol.*;
-import edu.umass.cs.txn.txpackets.*;
+import edu.umass.cs.transaction.exceptions.ResponseCode;
+import edu.umass.cs.transaction.exceptions.TXException;
+import edu.umass.cs.transaction.exceptions.TxnState;
+import edu.umass.cs.transaction.interfaces.TXLocker;
+import edu.umass.cs.transaction.protocol.*;
+import edu.umass.cs.transaction.txpackets.*;
 import edu.umass.cs.utils.Config;
 import org.json.JSONException;
 import org.json.JSONObject;

@@ -1,9 +1,9 @@
-package edu.umass.cs.txn.testing;
+package edu.umass.cs.transaction.testing;
 
 import edu.umass.cs.gigapaxos.interfaces.ClientRequest;
-import edu.umass.cs.txn.testing.app.GetRequest;
-import edu.umass.cs.txn.testing.app.OperateRequest;
-import edu.umass.cs.txn.txpackets.TxClientRequest;
+import edu.umass.cs.transaction.testing.app.GetRequest;
+import edu.umass.cs.transaction.testing.app.OperateRequest;
+import edu.umass.cs.transaction.txpackets.TxClientRequest;
 import org.apache.commons.math.stat.descriptive.DescriptiveStatistics;
 import edu.umass.cs.gigapaxos.PaxosConfig;
 import edu.umass.cs.gigapaxos.interfaces.Request;
@@ -11,10 +11,10 @@ import edu.umass.cs.gigapaxos.interfaces.RequestCallback;
 import edu.umass.cs.nio.interfaces.IntegerPacketType;
 import edu.umass.cs.reconfiguration.ReconfigurableAppClientAsync;
 import edu.umass.cs.reconfiguration.reconfigurationpackets.CreateServiceName;
-import edu.umass.cs.txn.testing.app.CalculatorTX;
-import edu.umass.cs.txn.testing.app.ResultRequest;
-import edu.umass.cs.txn.txpackets.TXPacket;
-import edu.umass.cs.txn.txpackets.TxClientResult;
+import edu.umass.cs.transaction.testing.app.CalculatorTX;
+import edu.umass.cs.transaction.testing.app.ResultRequest;
+import edu.umass.cs.transaction.txpackets.TXPacket;
+import edu.umass.cs.transaction.txpackets.TxClientResult;
 import edu.umass.cs.utils.Util;
 import org.json.JSONException;
 import org.json.JSONObject;
