@@ -1,2 +1,8 @@
-lib/
+lib/*
 .idea/
+jars/
+build/
+build.*
+derby.log
+paxos_logs/
+reconfiguration_DB/
