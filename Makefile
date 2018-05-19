@@ -33,11 +33,6 @@ latency:
 kill1:
 	ps -e| grep java | awk 'BEGIN {}{print $$1}' | xargs  kill -9
 
-test:
-	rm -f tmp/*
-	rm -rf paxos_logs/*
-	rm -rf reconfiguration_DB/*
-	ant runtest -Dtest=edu.umass.cs.txn.testing.SerializabilityTest
 
 kill_all:
 	./bin/gpServer.sh  -DgigapaxosConfig=src/testing/gigapaxos.properties  stop all
