@@ -48,12 +48,12 @@ public class TxLockProtocolTask<NodeIDType> extends
         if(request.getState() == TxState.ABORTED){
 //            This would have been started by the same primary
 //            if the primary had changed, there would be a take over message in between
-            protocolExecutor.spawn(new TxAbortProtocolTask(transaction,protocolExecutor,request.getPreviousActives(),request.getRpe()));
+            protocolExecutor.spawn(new TxAbortProtocolTask<>(transaction,protocolExecutor,request.getPreviousActives(),request.getRpe()));
             return;
         }
         if(request.getState() == TxState.COMMITTED){
 //            This happens when the server is recovering
-            protocolExecutor.spawn(new TxCommitProtocolTask(transaction,protocolExecutor));
+            protocolExecutor.spawn(new TxCommitProtocolTask<>(transaction,protocolExecutor));
             return;
         }
 
@@ -90,7 +90,7 @@ public class TxLockProtocolTask<NodeIDType> extends
         if(awaitingLock.isEmpty()){
                 if(!lockFailure) {
                     this.cancel();
-                    ptasks[0] = new TxExecuteProtocolTask(this.transaction, getProtocolExecutor());
+                    ptasks[0] = new TxExecuteProtocolTask<>(this.transaction, getProtocolExecutor());
                 }else{
                     TxStateRequest stateRequest = new TxStateRequest(this.transaction.getTXID(), TxState.ABORTED,
                             transaction.getLeader() ,ResponseCode.LOCK_FAILURE,previousActives);

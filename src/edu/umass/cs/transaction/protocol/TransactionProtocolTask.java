@@ -18,12 +18,14 @@ abstract public class TransactionProtocolTask<NodeIDType> implements
 
     Transaction transaction;
 
-    ProtocolExecutor protocolExecutor;
+    ProtocolExecutor<NodeIDType,TXPacket.PacketType,String> protocolExecutor;
 
     int retry = 0;
 
     final int MAX_RETRY=5;
-
+//   FixMe: This warning can be easily fixed my adding generic types into method signature
+//
+    @SuppressWarnings("unchecked")
     TransactionProtocolTask(Transaction transaction,ProtocolExecutor protocolExecutor){
         this.transaction=transaction;
         this.protocolExecutor=protocolExecutor;
@@ -40,15 +42,16 @@ abstract public class TransactionProtocolTask<NodeIDType> implements
 //  FixME: Is this dummy required. If so write a justification
     static Object[] dummy={null,null};
 
+    @SuppressWarnings("unchecked")
     public GenericMessagingTask<NodeIDType, ?>[] getMessageTask(Request request){
         Request[] ls=new Request[1];
         ls[0]=request;
-        GenericMessagingTask temp = new GenericMessagingTask<NodeIDType,Object>(dummy,ls);
+        GenericMessagingTask<NodeIDType,Object> temp = new GenericMessagingTask<>(dummy,ls);
         GenericMessagingTask<NodeIDType, Object>[] mtasks = new GenericMessagingTask[1];
         mtasks[0]=temp;
         return mtasks;
     }
-
+    @SuppressWarnings("unchecked")
     public GenericMessagingTask<NodeIDType,?>[] getMessageTask(ArrayList<Request> requests){
 //    FIXME:Dont know why I have to do this wierd
         GenericMessagingTask<NodeIDType,?>[] ret=new GenericMessagingTask[requests.size()];

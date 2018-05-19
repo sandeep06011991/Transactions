@@ -19,7 +19,7 @@ serverd:
 
 
 client:
-	./bin/gpClient.sh -DgigapaxosConfig=src/edu/umass/cs/transaction/testing/gigapaxos.properties edu.umass.cs.txn.testing.TxnClient
+	./bin/gpClient.sh -DgigapaxosConfig=src/edu/umass/cs/transaction/testing/gigapaxos.properties edu.umass.cs.transaction.testing.TxnClient
 
 sim:
 	ant 

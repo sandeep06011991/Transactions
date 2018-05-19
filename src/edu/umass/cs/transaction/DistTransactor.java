@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 import edu.umass.cs.gigapaxos.interfaces.*;
 import edu.umass.cs.nio.JSONMessenger;
 import edu.umass.cs.nio.interfaces.IntegerPacketType;
+import edu.umass.cs.nio.interfaces.Messenger;
 import edu.umass.cs.nio.nioutils.NIOHeader;
 import edu.umass.cs.protocoltask.ProtocolExecutor;
 import edu.umass.cs.reconfiguration.AbstractReplicaCoordinator;
@@ -57,6 +58,8 @@ public class DistTransactor<NodeIDType> extends AbstractTransactor<NodeIDType>
 
 	private TxMessenger txMessenger;
 
+	private Messenger coordMessenger;
+
 	private static final Logger log = Logger
 			.getLogger(DistTransactor.class.getName());
 
@@ -64,17 +67,19 @@ public class DistTransactor<NodeIDType> extends AbstractTransactor<NodeIDType>
 
 	public DistTransactor(){}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public void setCoordinator(AbstractReplicaCoordinator coordinator)
+	public void setCoordinator(AbstractReplicaCoordinator<NodeIDType> coordinator,Messenger messenger)
 		{
-		super.setCoordinator(coordinator);
+		super.setCoordinator(coordinator,messenger);
 		try {
 			this.gpClient = TXUtils.getGPClient(this);
 		}catch (IOException e){
 			log.log(Level.SEVERE,"Gpclient could not be initialized, Major error.");
 		}
 		this.txLocker = new TXLockerMap(coordinator);
-		txMessenger=new TxMessenger(this.gpClient,coordinator);
+		coordMessenger = messenger;
+		txMessenger=new TxMessenger(this.gpClient,messenger,coordinator.getMyID());
 		protocolExecutor=new ProtocolExecutor<>(txMessenger);
 		txMessenger.setProtocolExecutor(protocolExecutor);
 
@@ -303,14 +308,14 @@ public class DistTransactor<NodeIDType> extends AbstractTransactor<NodeIDType>
 
 
 
-
+	@SuppressWarnings("unchecked")
 	@Override
 	public boolean preExecuted(Request request) {
 		if(request==null){return false;}
 		if(request instanceof TxClientResult) {
 			TxClientResult txClientResult = (TxClientResult) request;
 			try {
-				((JSONMessenger)this.getCoordinator().getMessenger()).sendClient(txClientResult.getClientAddr(),txClientResult,txClientResult.getServerAddr());
+				((JSONMessenger)this.coordMessenger).sendClient(txClientResult.getClientAddr(),txClientResult,txClientResult.getServerAddr());
 			} catch (JSONException|IOException e) {
 				System.out.println("Unable to send to client");
 			}
@@ -516,6 +521,7 @@ public class DistTransactor<NodeIDType> extends AbstractTransactor<NodeIDType>
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	public synchronized boolean preRestore(String name, String state) {
 		try {
 			System.out.println("Attempting to prerestore" + name+" "+state);

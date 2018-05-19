@@ -97,13 +97,13 @@ public class TxSecondaryProtocolTask<NodeIDType> extends TransactionProtocolTask
 
     @Override
     public GenericMessagingTask<NodeIDType, ?>[] restart() {
-        ProtocolTask pt =null;
+        TransactionProtocolTask<NodeIDType> pt =null;
         switch(state){
-            case INIT:  pt = new TxLockProtocolTask(transaction,protocolExecutor,leaderActives);
+            case INIT:  pt = new TxLockProtocolTask<>(transaction,protocolExecutor,leaderActives);
                         break;
-            case COMMITTED: pt = new TxCommitProtocolTask(transaction,protocolExecutor);
+            case COMMITTED: pt = new TxCommitProtocolTask<>(transaction,protocolExecutor);
                             break;
-            case ABORTED:   pt = new TxAbortProtocolTask(transaction,protocolExecutor,prevLeaderActives,rpe);
+            case ABORTED:   pt = new TxAbortProtocolTask<>(transaction,protocolExecutor,prevLeaderActives,rpe);
                             break;
         }
         this.cancel();

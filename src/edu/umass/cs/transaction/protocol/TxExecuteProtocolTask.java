@@ -48,7 +48,7 @@ public class TxExecuteProtocolTask<NodeIDType>
 //        System.out.println(request.toString());
         if(request.getState()== TxState.COMMITTED){
             this.cancel();
-            protocolExecutor.spawn(new TxCommitProtocolTask(transaction,protocolExecutor));
+            protocolExecutor.spawn(new TxCommitProtocolTask<>(transaction,protocolExecutor));
         }else{
             if(request.getState()!=TxState.ABORTED){
                 log.log(Level.INFO,"VIOLATION!!!!!");
@@ -60,7 +60,7 @@ public class TxExecuteProtocolTask<NodeIDType>
 //            assert request.getState() == TxState.ABORTED;
 //          We are not concerned with this failure
             this.cancel();
-            protocolExecutor.spawn(new TxAbortProtocolTask(transaction,protocolExecutor,request.getPreviousActives(),request.getRpe()));
+            protocolExecutor.spawn(new TxAbortProtocolTask<>(transaction,protocolExecutor,request.getPreviousActives(),request.getRpe()));
         }
     }
 

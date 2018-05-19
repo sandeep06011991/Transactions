@@ -6,3 +6,4 @@ build.*
 derby.log
 paxos_logs/
 reconfiguration_DB/
+tmp/*

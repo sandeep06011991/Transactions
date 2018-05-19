@@ -29,6 +29,9 @@ public class TxMessenger<NodeIDType,Message> implements Messenger<NodeIDType,Mes
 
     public ProtocolExecutor pe;
 
+    private NodeIDType myId;
+
+    private Messenger messenger;
 
     private static final Logger log = Logger
             .getLogger(DistTransactor.class.getName());
@@ -37,14 +40,12 @@ public class TxMessenger<NodeIDType,Message> implements Messenger<NodeIDType,Mes
         this.pe=pe;
     }
 
-    AbstractReplicaCoordinator abstractReplicaCoordinator;
-
-
-
-    public TxMessenger(ReconfigurableAppClientAsync gpClient, AbstractReplicaCoordinator abstractReplicaCoordinator) {
+    public TxMessenger(ReconfigurableAppClientAsync gpClient, Messenger messenger, NodeIDType id) {
         this.gpClient = gpClient;
-        this.abstractReplicaCoordinator=abstractReplicaCoordinator;
+        this.messenger = messenger;
+        this.myId = id;
     }
+    @SuppressWarnings("unchecked")
     public void sendObject(Object message) {
 //        FIXME: A lot of redundant messages will be sent on recovery
         try {
@@ -54,13 +55,13 @@ public class TxMessenger<NodeIDType,Message> implements Messenger<NodeIDType,Mes
 
                     log.log(Level.INFO,"Recieved type: SENDTOCLIENT "+txClientResult.getRequestID());
 //                    log.log(Level.INFO,"Message sent to client:"+txClientResult.getRequestID());
-                    if(!this.abstractReplicaCoordinator.getMessenger().getListeningSocketAddress().equals(txClientResult.getServerAddr())){
+                    if(!this.messenger.getListeningSocketAddress().equals(txClientResult.getServerAddr())){
 //                        System.out.println("Indirect response:send to entry server");
-                        ((JSONMessenger) (this.abstractReplicaCoordinator.getMessenger())).sendClient(txClientResult.getServerAddr(),
+                        ((JSONMessenger) (this.messenger)).sendClient(txClientResult.getServerAddr(),
                                 txClientResult);
 
                     }else{
-                        ((JSONMessenger) (this.abstractReplicaCoordinator.getMessenger())).sendClient(txClientResult.getClientAddr()
+                        ((JSONMessenger) (this.messenger)).sendClient(txClientResult.getClientAddr()
                                 ,txClientResult,txClientResult.getServerAddr());
 
                     }
@@ -125,8 +126,7 @@ public class TxMessenger<NodeIDType,Message> implements Messenger<NodeIDType,Mes
 
     @Override
     public NodeIDType getMyID() {
-        return (NodeIDType) abstractReplicaCoordinator.getMyID();
-//        throw new RuntimeException("TxMessengerFunction not required");
+        return myId;
     }
 
     @Override

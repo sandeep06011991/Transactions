@@ -119,12 +119,12 @@ public class TXLockerMap implements TXLocker {
 	public boolean allowRequest(long requestId,String txID,String serviceName){
 		if(txMap.containsKey(serviceName) && txMap.get(serviceName).equals(txID)){
 			if(!allowedRequests.containsKey(serviceName)){
-				HashSet set = new HashSet();
+				HashSet<Long> set = new HashSet<>();
 				set.add(new Long(requestId));
 				allowedRequests.put(serviceName,set);
 				return false;
 			}else{
-				HashSet set= allowedRequests.get(serviceName);
+				HashSet<Long> set= allowedRequests.get(serviceName);
 				if(set.contains(requestId)){return  true;}
 				set.add(requestId);
 				return false;

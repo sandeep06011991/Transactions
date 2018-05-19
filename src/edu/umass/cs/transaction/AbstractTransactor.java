@@ -7,6 +7,7 @@ import java.util.Set;
 import edu.umass.cs.gigapaxos.interfaces.ExecutedCallback;
 import edu.umass.cs.gigapaxos.interfaces.Request;
 import edu.umass.cs.nio.interfaces.IntegerPacketType;
+import edu.umass.cs.nio.interfaces.Messenger;
 import edu.umass.cs.nio.nioutils.NIOHeader;
 import edu.umass.cs.reconfiguration.AbstractReplicaCoordinator;
 import edu.umass.cs.reconfiguration.PaxosReplicaCoordinator;
@@ -27,7 +28,7 @@ import edu.umass.cs.utils.Config;
  */
 
 
-public  abstract class AbstractTransactor<NodeIDType> implements CoordinatorCallback {
+public  abstract class AbstractTransactor<NodeIDType> implements CoordinatorCallback<NodeIDType> {
 
 	private AbstractReplicaCoordinator<NodeIDType> coordinator;
 
@@ -37,11 +38,9 @@ public  abstract class AbstractTransactor<NodeIDType> implements CoordinatorCall
 		return coordinator.getMyID();
 	}
 
-	@Override
-	public void setCoordinator(AbstractReplicaCoordinator coordinator) {
+	public void setCoordinator(AbstractReplicaCoordinator<NodeIDType> coordinator, Messenger messenger){
 		this.coordinator = coordinator;
 		assert (coordinator instanceof PaxosReplicaCoordinator);
-		this.coordinator.setCallback(this);
 	}
 
 
