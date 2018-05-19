@@ -10,12 +10,10 @@ import edu.umass.cs.nio.SSLDataProcessingWorker;
 import edu.umass.cs.nio.interfaces.Messenger;
 import edu.umass.cs.nio.interfaces.NodeConfig;
 import edu.umass.cs.protocoltask.ProtocolExecutor;
-import edu.umass.cs.reconfiguration.AbstractReplicaCoordinator;
 import edu.umass.cs.reconfiguration.ReconfigurableAppClientAsync;
 import edu.umass.cs.transaction.DistTransactor;
 import edu.umass.cs.transaction.txpackets.TXPacket;
 import edu.umass.cs.transaction.txpackets.TxClientResult;
-import edu.umass.cs.transaction.txpackets.UnlockRequest;
 import org.json.JSONException;
 
 import java.io.IOException;

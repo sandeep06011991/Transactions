@@ -55,6 +55,7 @@ public class Transaction extends JSONObject {
 	public InetSocketAddress clientAddr;
 	public long requestId=-1;
 	// Current Leader nodeID
+	// The entry server is chosen as the leader
 	String nodeId;
 
 	ArrayList<ClientRequest> requests;

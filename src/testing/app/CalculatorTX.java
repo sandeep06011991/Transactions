@@ -13,17 +13,13 @@
  * the License.
  * 
  * Initial developer(s): V. Arun */
-package edu.umass.cs.transaction.testing.app;
+package testing.app;
 
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Array;
-import java.net.InetSocketAddress;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -41,11 +37,8 @@ import edu.umass.cs.nio.interfaces.SSLMessenger;
 import edu.umass.cs.nio.nioutils.NIOHeader;
 import edu.umass.cs.reconfiguration.examples.AbstractReconfigurablePaxosApp;
 import edu.umass.cs.reconfiguration.examples.AppRequest;
-import edu.umass.cs.reconfiguration.examples.AppRequest.ResponseCodes;
-import edu.umass.cs.reconfiguration.interfaces.Reconfigurable;
 import edu.umass.cs.reconfiguration.reconfigurationutils.RequestParseException;
-import org.mapdb.TxEngine;
-import org.omg.SendingContext.RunTime;
+import testing.app.packets.*;
 
 /**
  * @author Sandeep
@@ -81,7 +74,7 @@ public class CalculatorTX extends AbstractReconfigurablePaxosApp<String> impleme
 			return this.state;
 		}
 
-		void operate(OperateRequest.Operation operation,int obj){
+		void operate(OperateRequest.Operation operation, int obj){
 			switch (operation){
 				case add:
 					state = state + obj;

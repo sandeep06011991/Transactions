@@ -1,8 +1,8 @@
-package edu.umass.cs.transaction.testing;
+package testing;
 
 import edu.umass.cs.gigapaxos.interfaces.ClientRequest;
-import edu.umass.cs.transaction.testing.app.GetRequest;
-import edu.umass.cs.transaction.testing.app.OperateRequest;
+import testing.app.packets.GetRequest;
+import testing.app.packets.OperateRequest;
 import edu.umass.cs.transaction.txpackets.TxClientRequest;
 import org.apache.commons.math.stat.descriptive.DescriptiveStatistics;
 import edu.umass.cs.gigapaxos.PaxosConfig;
@@ -11,8 +11,8 @@ import edu.umass.cs.gigapaxos.interfaces.RequestCallback;
 import edu.umass.cs.nio.interfaces.IntegerPacketType;
 import edu.umass.cs.reconfiguration.ReconfigurableAppClientAsync;
 import edu.umass.cs.reconfiguration.reconfigurationpackets.CreateServiceName;
-import edu.umass.cs.transaction.testing.app.CalculatorTX;
-import edu.umass.cs.transaction.testing.app.ResultRequest;
+import testing.app.CalculatorTX;
+import testing.app.packets.ResultRequest;
 import edu.umass.cs.transaction.txpackets.TXPacket;
 import edu.umass.cs.transaction.txpackets.TxClientResult;
 import edu.umass.cs.utils.Util;
@@ -21,9 +21,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.sql.Time;
 import java.util.*;
-import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

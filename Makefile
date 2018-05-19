@@ -1,33 +1,33 @@
 
 server:
-	echo yes|./bin/gpServer.sh  -DgigapaxosConfig=src/edu/umass/cs/transaction/testing/gigapaxos.properties  clear all
-	./bin/gpServer.sh  -DgigapaxosConfig=src/edu/umass/cs/transaction/testing/gigapaxos.properties  stop all
 	ant
+	echo yes|./bin/gpServer.sh  -DgigapaxosConfig=src/testing/gigapaxos.properties  clear all
+	./bin/gpServer.sh  -DgigapaxosConfig=src/testing/gigapaxos.properties  stop all
 	rm -rf tmp/*
 	rm -rf paxos_logs/*
 	rm -rf reconfiguration_DB/*
-	./bin/gpServer.sh -DgigapaxosConfig=src/edu/umass/cs/transaction/testing/gigapaxos.properties start all
+	./bin/gpServer.sh -DgigapaxosConfig=src/testing/gigapaxos.properties start all
 
 
 serverd:
-	./bin/gpServer.sh -DgigapaxosConfig=src/edu/umass/cs/transaction/testing/gigapaxos.properties stop all
 	ant
+	./bin/gpServer.sh -DgigapaxosConfig=src/testing/gigapaxos.properties stop all
 	rm -rf tmp/*
 	rm -rf paxos_logs/*
 	rm -rf reconfiguration_DB/*
-	./bin/gpServer.sh -DgigapaxosConfig=src/edu/umass/cs/transaction/testing/gigapaxos.properties -debug start all
+	./bin/gpServer.sh -DgigapaxosConfig=src/testing/gigapaxos.properties -debug start all
 
 
 client:
-	./bin/gpClient.sh -DgigapaxosConfig=src/edu/umass/cs/transaction/testing/gigapaxos.properties edu.umass.cs.transaction.testing.TxnClient
+	./bin/gpClient.sh -DgigapaxosConfig=src/testing/gigapaxos.properties testing.BasicTest
 
 sim:
 	ant 
 	rm -rf results
-	./bin/gpClient.sh -DgigapaxosConfig=src/edu/umass/cs/transaction/testing/gigapaxos.properties edu.umass.cs.txn.testing.Simulator
+	./bin/gpClient.sh -DgigapaxosConfig=src/testing/gigapaxos.properties edu.umass.cs.txn.testing.Simulator
 
 latency:
-	./bin/gpClient.sh -DgigapaxosConfig=src/edu/umass/cs/transaction/testing/gigapaxos.properties edu.umass.cs.txn.testing.Latency
+	./bin/gpClient.sh -DgigapaxosConfig=src/testing/gigapaxos.properties edu.umass.cs.txn.testing.Latency
 
 
 kill1:
@@ -40,13 +40,13 @@ test:
 	ant runtest -Dtest=edu.umass.cs.txn.testing.SerializabilityTest
 
 kill_all:
-	./bin/gpServer.sh  -DgigapaxosConfig=src/edu/umass/cs/transaction/testing/gigapaxos.properties  stop all
+	./bin/gpServer.sh  -DgigapaxosConfig=src/testing/gigapaxos.properties  stop all
 
 restart:
-	./bin/gpServer.sh -DgigapaxosConfig=src/edu/umass/cs/transaction/testing/gigapaxos.properties start all
+	./bin/gpServer.sh -DgigapaxosConfig=src/testing/gigapaxos.properties start all
 
 clear:
-	./bin/gpServer.sh -DgigapaxosConfig=src/edu/umass/cs/transaction/testing/gigapaxos.properties clear all
+	./bin/gpServer.sh -DgigapaxosConfig=src/testing/gigapaxos.properties clear all
 
 
 getLogs:

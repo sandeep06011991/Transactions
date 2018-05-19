@@ -11,6 +11,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.net.InetSocketAddress;
+import java.security.Key;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -24,8 +25,11 @@ public class TxClientRequest extends JSONPacket implements ClientRequest{
     public InetSocketAddress recvrAddr;
 
     static Random random=new Random();
+
+    String entry;
+
     private enum Keys {
-        REQUESTS,REQUESTID
+        REQUESTS,REQUESTID,ENTRY
     }
 
     public TxClientRequest(ArrayList<ClientRequest> requests){
@@ -33,6 +37,10 @@ public class TxClientRequest extends JSONPacket implements ClientRequest{
         super(TXPacket.PacketType.TX_CLIENT);
         this.requests=requests;
         this.requestId=random.nextLong();
+        /* In fixed groups , since any cast is used entry does not matter
+        * if participant is chosen as leader, this is overriden with one of the participants name*/
+        this.entry = "Some irrelevant name";
+
     }
 
     @Override
@@ -45,10 +53,13 @@ public class TxClientRequest extends JSONPacket implements ClientRequest{
         return TXPacket.PacketType.TX_CLIENT;
     }
 
+    public void setServiceName(String serviceName){
+        this.entry = serviceName;
+    }
+
     @Override
     public String getServiceName() {
-//        FIXME: Tx ClientRequests should not be having a service name;
-        return "Some irrelevant Service Name is sent";
+        return this.entry;
     }
 
     @Override
@@ -64,6 +75,9 @@ public class TxClientRequest extends JSONPacket implements ClientRequest{
         }
         jsonObject.put(Keys.REQUESTS.toString(),j);
         jsonObject.put(Keys.REQUESTID.toString(),requestId);
+        if(getServiceName()!=null){
+            jsonObject.put(Keys.ENTRY.toString(),getServiceName());
+        }
         return jsonObject;
     }
 
@@ -79,6 +93,10 @@ public class TxClientRequest extends JSONPacket implements ClientRequest{
             }
         }
         requestId=jsonObject.getLong(Keys.REQUESTID.toString());
+
+        if(jsonObject.has(Keys.ENTRY.toString())){
+            setServiceName(jsonObject.getString(Keys.ENTRY.toString()));
+        }
     }
 
     @Override

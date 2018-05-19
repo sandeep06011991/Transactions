@@ -1,4 +1,4 @@
-package edu.umass.cs.transaction.testing;
+package testing;
 
 import edu.umass.cs.gigapaxos.PaxosConfig;
 import edu.umass.cs.gigapaxos.interfaces.*;
@@ -6,10 +6,11 @@ import edu.umass.cs.gigapaxos.paxosutil.RateLimiter;
 import edu.umass.cs.nio.interfaces.IntegerPacketType;
 import edu.umass.cs.reconfiguration.ReconfigurableAppClientAsync;
 import edu.umass.cs.reconfiguration.reconfigurationpackets.CreateServiceName;
+import edu.umass.cs.transaction.BaseTxnClient;
 import edu.umass.cs.transaction.exceptions.ResponseCode;
-import edu.umass.cs.transaction.testing.app.CalculatorTX;
-import edu.umass.cs.transaction.testing.app.OperateRequest;
-import edu.umass.cs.transaction.testing.app.ResultRequest;
+import testing.app.CalculatorTX;
+import testing.app.packets.OperateRequest;
+import testing.app.packets.ResultRequest;
 import edu.umass.cs.transaction.txpackets.TXPacket;
 import edu.umass.cs.transaction.txpackets.TxClientRequest;
 import edu.umass.cs.transaction.txpackets.TxClientResult;
@@ -60,7 +61,7 @@ public class Simulator extends ReconfigurableAppClientAsync<Request> {
 //    Wait 2 minute after starting everythin
 //    Atleast this much time between failures
 
-    static TxnClient client;
+    static BaseTxnClient client;
 
     static boolean created = false;
 
@@ -74,7 +75,7 @@ public class Simulator extends ReconfigurableAppClientAsync<Request> {
     static  void createSomething(){
             recieved = 0;
             try {
-                client = new TxnClient();
+                client = new BaseTxnClient();
                 Set<InetSocketAddress> quorum = new HashSet<>();
                 for (String key : actives.keySet()) {
                     quorum.add(actives.get(key));

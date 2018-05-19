@@ -1,23 +1,21 @@
-package edu.umass.cs.transaction.testing;
+package testing;
 
-import edu.umass.cs.gigapaxos.PaxosConfig;
 import edu.umass.cs.gigapaxos.interfaces.*;
 import edu.umass.cs.nio.interfaces.IntegerPacketType;
 import edu.umass.cs.reconfiguration.ReconfigurableAppClientAsync;
 import edu.umass.cs.reconfiguration.reconfigurationpackets.CreateServiceName;
-import edu.umass.cs.transaction.testing.app.*;
+import testing.app.*;
 import edu.umass.cs.transaction.txpackets.TXPacket;
 import edu.umass.cs.transaction.txpackets.TxClientRequest;
 import edu.umass.cs.transaction.txpackets.TxClientResult;
 import org.json.JSONException;
 import org.json.JSONObject;
+import testing.app.packets.GetRequest;
+import testing.app.packets.OperateRequest;
+import testing.app.packets.ResultRequest;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.net.InetSocketAddress;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -28,11 +26,11 @@ import java.util.concurrent.TimeUnit;
  * @author Sandeep
  *
  */
-public class TxnClient extends ReconfigurableAppClientAsync<Request> {
+public class BasicTest extends CalculatorTXClient {
 
     private int numResponses = 0;
 
-    static TxnClient client;
+    static BasicTest client;
 
     static boolean created = false;
 
@@ -41,12 +39,9 @@ public class TxnClient extends ReconfigurableAppClientAsync<Request> {
     static void createSomething(){
         if(!created){
             try {
-                client = new TxnClient();
-
-                client.sendRequest(new CreateServiceName("Service_name_txn","0"));
+                client = new BasicTest();
                 client.sendRequest(new CreateServiceName("name3", "0"));
                 client.sendRequest(new CreateServiceName("name4","1"));
-//                Fixme:Hack clean this up later
                 TimeUnit.SECONDS.sleep(5);
             }catch(Exception e){
                 e.printStackTrace();
@@ -160,7 +155,7 @@ public class TxnClient extends ReconfigurableAppClientAsync<Request> {
                 startTime = new Date().getTime();
                 init.put(new Long(txClientRequest.getRequestID()),new Long(new Date().getTime()));
 //                InetSocketAddress ient= PaxosConfig.getActives().get("arun_a0");
-                sendRequestAnycast(txClientRequest, new RequestCallback() {
+                sendTransaction(txClientRequest, new RequestCallback() {
                     @Override
                     public void handleResponse(Request response) {
                         TxClientResult t = (TxClientResult) response;
@@ -190,67 +185,14 @@ public class TxnClient extends ReconfigurableAppClientAsync<Request> {
     /**
      * @throws IOException
      */
-    public TxnClient() throws IOException {
+    public BasicTest() throws IOException {
         super();
     }
 
 
-    @Override
-    public Request getRequest(String stringified) {
-        try {
-/*      DEBUG tip: If requests are not being recieved debug here */
-            JSONObject jsonObject=new JSONObject(stringified);
-            if(jsonObject.getInt("type")==4){
-                return new ResultRequest(jsonObject);
-            }
-            if(jsonObject.getInt("type")==262){
-                System.out.println(stringified);
-                return new TxClientResult(jsonObject);
-            }
-        } catch ( JSONException e) {
-            // do nothing by designSys
-            e.printStackTrace();
-        }
 
-
-        return null;
-    }
-
-
-
-
-    @Override
-    public Set<IntegerPacketType> getRequestTypes() {
-        Set<IntegerPacketType> set = CalculatorTX.staticGetRequestTypes();
-        set.add(TXPacket.PacketType.TX_CLIENT_RESPONSE);
-        return set;
-    }
-
-    public void testForQuorum(){
-
-    }
-
-    /**
-     * This simple client creates a bunch of names and sends a bunch of requests
-     * to each of them. Refer to the parent class
-     * {@link ReconfigurableAppClientAsync} for other utility methods available
-     * to this method or to know how to write your own client.
-     *w
-     * @param args
-     * @throws IOException
-     */
 
     public static void main(String args[]) throws  IOException{
-//        for(InetSocketAddress socketAddress:PaxosConfig.getActives().values()){
-//            System.out.println(socketAddress);
-//        }
-//        Process p = Runtime.getRuntime().exec(new String[]{"ls"});
-//        BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
-//        String line;
-//        while ((line = input.readLine()) != null) {
-//            System.out.println(line);
-//        }
-//        input.close();
         createSomething();
 //        client.testGetRequest(10);
 //        client = new TxnClient();

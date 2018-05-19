@@ -1,10 +1,8 @@
-package edu.umass.cs.transaction.testing.app;
+package testing.app.packets;
 
-import edu.umass.cs.reconfiguration.interfaces.ReplicableRequest;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.security.Key;
 import java.util.HashMap;
 
 public class OperateRequest extends TxAppRequest {

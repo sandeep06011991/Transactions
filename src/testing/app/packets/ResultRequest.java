@@ -1,9 +1,7 @@
-package edu.umass.cs.transaction.testing.app;
+package testing.app.packets;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.security.Key;
 
 public class ResultRequest extends TxAppRequest {
 
