@@ -116,7 +116,8 @@ public class DistTransactor<NodeIDType> extends AbstractTransactor<NodeIDType>
 				}
 			}
 		} catch (JSONException e) {
-			throw new RequestParseException(e);
+//			System.out.println("Some exception "+str);
+//			throw new RequestParseException(e);
 		}
 		return null;
 	}
@@ -149,6 +150,8 @@ public class DistTransactor<NodeIDType> extends AbstractTransactor<NodeIDType>
 
 			AbstractReplicaCoordinator<NodeIDType> appCoordinator = this.getCoordinator();
 //			FixMe: Slightly patchy fix this later.
+//			If appCoordinator is not set. DistTransactor should not work
+			if(appCoordinator==null)return;
 			for(int i=0;i<TxConstants.noFixedGroups;i++){
 				String groupName = TxConstants.coordGroupPrefix+i;
 				if(appCoordinator.getReplicaGroup(groupName)==null){
@@ -401,8 +404,10 @@ public class DistTransactor<NodeIDType> extends AbstractTransactor<NodeIDType>
 				Integer.parseInt(state);
 //				Just for testing
 			}catch (NumberFormatException nfe){
-				System.out.println("Could not prerestore"+name+" "+state);
+//				System.out.println("Could not prerestore"+name+" "+state);
 			}
+			return false;
+		}catch(NullPointerException npe){
 			return false;
 		}
 
