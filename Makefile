@@ -24,10 +24,10 @@ client:
 sim:
 	ant 
 	rm -rf results
-	./bin/gpClient.sh -DgigapaxosConfig=src/testing/gigapaxos.properties edu.umass.cs.txn.testing.Simulator
+	./bin/gpClient.sh -DgigapaxosConfig=src/testing/gigapaxos.properties testing.Simulator
 
 latency:
-	./bin/gpClient.sh -DgigapaxosConfig=src/testing/gigapaxos.properties edu.umass.cs.txn.testing.Latency
+	./bin/gpClient.sh -DgigapaxosConfig=src/testing/gigapaxos.properties testing.Latency
 
 
 kill1:

@@ -28,8 +28,6 @@ import java.util.concurrent.TimeUnit;
  */
 public class BasicTest extends CalculatorTXClient {
 
-    private int numResponses = 0;
-
     static BasicTest client;
 
     static boolean created = false;

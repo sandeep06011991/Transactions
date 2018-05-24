@@ -13,16 +13,15 @@ import edu.umass.cs.transaction.txpackets.TxClientRequest;
 import edu.umass.cs.transaction.txpackets.TxClientResult;
 import org.json.JSONException;
 import org.json.JSONObject;
-import testing.app.CalculatorTX;
-import testing.app.packets.ResultRequest;
 
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
 /*This is the basic client wrapper around reconfigurable app client async
 * used to support transactions. */
-public class BaseTxnClient extends ReconfigurableAppClientAsync<Request> {
+public abstract class BaseTxnClient extends ReconfigurableAppClientAsync<Request> {
 
     static Random random = new Random();
 
@@ -47,9 +46,6 @@ public class BaseTxnClient extends ReconfigurableAppClientAsync<Request> {
         try {
 /*      DEBUG tip: If requests are not being recieved debug here */
             JSONObject jsonObject=new JSONObject(stringified);
-            if(jsonObject.getInt("type")==4){
-                return new ResultRequest(jsonObject);
-            }
             if(jsonObject.getInt("type")==262){
                 System.out.println(stringified);
                 return new TxClientResult(jsonObject);
@@ -65,7 +61,7 @@ public class BaseTxnClient extends ReconfigurableAppClientAsync<Request> {
 
     @Override
     public Set<IntegerPacketType> getRequestTypes() {
-        Set<IntegerPacketType> set = CalculatorTX.staticGetRequestTypes();
+        Set<IntegerPacketType> set = new HashSet<>();
         set.add(TXPacket.PacketType.TX_CLIENT_RESPONSE);
         return set;
     }

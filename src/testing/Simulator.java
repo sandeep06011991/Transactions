@@ -9,6 +9,7 @@ import edu.umass.cs.reconfiguration.reconfigurationpackets.CreateServiceName;
 import edu.umass.cs.transaction.BaseTxnClient;
 import edu.umass.cs.transaction.exceptions.ResponseCode;
 import testing.app.CalculatorTX;
+import testing.app.CalculatorTXClient;
 import testing.app.packets.OperateRequest;
 import testing.app.packets.ResultRequest;
 import edu.umass.cs.transaction.txpackets.TXPacket;
@@ -29,7 +30,7 @@ import java.util.logging.Logger;
  * @author Sandeep
  *
  */
-public class Simulator extends ReconfigurableAppClientAsync<Request> {
+public class Simulator extends CalculatorTXClient {
 
     /*Building the Simulator
     0. Test every kind of Tx Response Code
@@ -68,20 +69,19 @@ public class Simulator extends ReconfigurableAppClientAsync<Request> {
     static HashMap<ResponseCode,Integer> results = new HashMap<>();
 
    static  String cmdAppend1 = "./bin/gpServer.sh";
-   static String cmdAppend2= "-DgigapaxosConfig=src/edu.umass.cs.transaction/testing/gigapaxos.properties";
+   static String cmdAppend2= "-DgigapaxosConfig=src/testing/gigapaxos.properties";
     private static final Logger log = Logger
             .getLogger(Simulator.class.getName());
     HashMap<String,Boolean> isAlive;
     static  void createSomething(){
             recieved = 0;
             try {
-                client = new BaseTxnClient();
+                client = new CalculatorTXClient();
                 Set<InetSocketAddress> quorum = new HashSet<>();
                 for (String key : actives.keySet()) {
                     quorum.add(actives.get(key));
                 }
                 Object something = new Object();
-                client.sendRequest(new CreateServiceName("Service_name_txn", "0", quorum));
                 for (int i = 1; i <= maxGroups; i++) {
                     client.sendRequest(new CreateServiceName("name" + i, Integer.toString(i)), new RequestCallback() {
                         @Override
@@ -132,11 +132,6 @@ public class Simulator extends ReconfigurableAppClientAsync<Request> {
                 for (String active : actives) {
                     if (isAlive.get(active)) i++;
                 }
-//                try {
-////                    writer.write("Quorum Alive" + i + "Quorum Total" + actives.size()+"\n");
-//                }catch (IOException ioe){
-////                    System.out.println("ioe exception");
-//                }
                 if (i <= actives.size() / 2) {
                     return ResponseCode.TARGET;
                 }

@@ -1,6 +1,7 @@
 package testing;
 
 import edu.umass.cs.gigapaxos.interfaces.ClientRequest;
+import testing.app.CalculatorTXClient;
 import testing.app.packets.GetRequest;
 import testing.app.packets.OperateRequest;
 import edu.umass.cs.transaction.txpackets.TxClientRequest;
@@ -9,7 +10,6 @@ import edu.umass.cs.gigapaxos.PaxosConfig;
 import edu.umass.cs.gigapaxos.interfaces.Request;
 import edu.umass.cs.gigapaxos.interfaces.RequestCallback;
 import edu.umass.cs.nio.interfaces.IntegerPacketType;
-import edu.umass.cs.reconfiguration.ReconfigurableAppClientAsync;
 import edu.umass.cs.reconfiguration.reconfigurationpackets.CreateServiceName;
 import testing.app.CalculatorTX;
 import testing.app.packets.ResultRequest;
@@ -25,7 +25,7 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Latency extends ReconfigurableAppClientAsync<Request>{
+public class Latency extends CalculatorTXClient {
 
     protected static String DEFAULT_RECONFIGURATOR_PREFIX = "active.";
 
@@ -33,9 +33,18 @@ public class Latency extends ReconfigurableAppClientAsync<Request>{
 
     static Latency client;
 
+    /*The total no. of groups that will be precreated.
+    * One of this group is randomly chosen for back to back requests */
+
     static int maxGroups = 10;
 
     static int recieved = 0;
+
+    /*The total no. of back to back requests for each test*/
+    static final int NO_REQUESTS = 20;
+
+    /*The initital requests which will be skipped as a part of warm up.*/
+    static final int SKIP = 3;
 
     static{
         Properties config = PaxosConfig.getAsProperties();
@@ -54,12 +63,7 @@ public class Latency extends ReconfigurableAppClientAsync<Request>{
     static  void createSomething(){
         try {
             client = new Latency();
-            Set<InetSocketAddress> quorum = new HashSet<>();
-            for (String key : actives.keySet()) {
-                quorum.add(actives.get(key));
-            }
             Object something = new Object();
-            client.sendRequest(new CreateServiceName("Service_name_txn", "0", quorum));
             for (int i = 1; i <= maxGroups; i++) {
                 client.sendRequest(new CreateServiceName("name" + i, Integer.toString(i)), new RequestCallback() {
                     @Override
@@ -87,24 +91,6 @@ public class Latency extends ReconfigurableAppClientAsync<Request>{
 
     }
 
-    @Override
-    public Request getRequest(String stringified) {
-
-        try {
-/*      DEBUG tip: If requests are not being recieved debug here */
-            JSONObject jsonObject=new JSONObject(stringified);
-            if(jsonObject.getInt("type")==4){
-                return new ResultRequest(jsonObject);
-            }
-            if(jsonObject.getInt("type")==262){
-                return new TxClientResult(jsonObject);
-            }
-        } catch ( JSONException e) {
-            // do nothing by designSys
-            e.printStackTrace();
-        }
-        return null;
-    }
 
     private static final Logger log = Logger
             .getLogger(Latency.class.getName());
@@ -112,7 +98,7 @@ public class Latency extends ReconfigurableAppClientAsync<Request>{
 
     public static void testTxnLatency() throws IOException{
         DescriptiveStatistics stats = new DescriptiveStatistics();
-        for(int i=0;i<300;i++){
+        for(int i=0;i<NO_REQUESTS;i++){
             Random random = new Random();
             int t = random.nextInt(maxGroups)+1;
             OperateRequest operateRequest =
@@ -128,7 +114,7 @@ public class Latency extends ReconfigurableAppClientAsync<Request>{
                 long endTime = Calendar.getInstance().getTimeInMillis();
                 log.log(Level.INFO,"TxLatency "+ Long.toString(endTime - startTime));
                 log.log(Level.INFO,response.toString());
-                if(i>20)stats.addValue(new Long(endTime-startTime));
+                if(i>SKIP)stats.addValue(new Long(endTime-startTime));
             }
 
         }
@@ -142,7 +128,7 @@ public class Latency extends ReconfigurableAppClientAsync<Request>{
 
     public static void testPaxosLatency() throws IOException{
         DescriptiveStatistics stats = new DescriptiveStatistics();
-        for(int i=0;i<300;i++){
+        for(int i=0;i<NO_REQUESTS;i++){
             Random random = new Random();
             int t = random.nextInt(maxGroups)+1;
             GetRequest getRequest =
@@ -156,7 +142,7 @@ public class Latency extends ReconfigurableAppClientAsync<Request>{
                 long endTime = Calendar.getInstance().getTimeInMillis();
 //                log.log(Level.INFO,"Latency "+ Long.toString(endTime - startTime));
 //                log.log(Level.INFO,response.toString());
-              if(i>20)stats.addValue(new Long(endTime-startTime));
+              if(i>SKIP)stats.addValue(new Long(endTime-startTime));
             }
 
 
