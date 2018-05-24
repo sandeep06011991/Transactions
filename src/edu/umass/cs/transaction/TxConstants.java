@@ -8,7 +8,7 @@ public final class TxConstants {
     *   1) Where a fixed coordinator group is chosen as coordinator
     *   2) Where a participant group is chosen as coordinator */
 
-    public static final boolean fixedGroups=true;
+    public static final boolean fixedGroups=false;
 
     public static final int noFixedGroups = 3;
 

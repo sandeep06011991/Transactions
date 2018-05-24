@@ -40,7 +40,7 @@ value="gigapaxos-${build.major.number}.${build.minor.number}.${build.revision.nu
 
   <target name="compile" depends="init, buildnumber" description="compile java files">
     <javac srcdir="${src.dir}" destdir="${build.classes.dir}" debug="true" debuglevel="lines,vars,source"
-           includeantruntime="false" nowarn="true">
+           includeantruntime="false">
       <compilerarg value="-Xlint:unchecked"/>
       <classpath refid="classpath.base"/>
     </javac>
@@ -153,6 +153,9 @@ destfile="${build.jar.dir}/gigapaxos-${build.major.number}.${build.minor.number}
     <pathelement location="${lib.dir}/jedis-2.8.1.jar"/>
     <pathelement location="${lib.dir}/netty-all-4.1.4.Final.jar"/>
     <!--    <pathelement location="${conf.dir}"/>-->
+    <fileset dir="${lib.dir}">
+      <include name="*.jar"/>
+    </fileset>
   </path>
   
   <target name="ensure-test-name" unless="test">
@@ -228,7 +231,7 @@ command line with -Dclass="
   </target>
    
  <target name="test" description="Runs the default integration test" 
-          depends="jar, compile">
+          depends="jar, compiletest">
     <junit printsummary="yes" fork="yes" haltonfailure="on" showoutput="yes">
       <test name="edu.umass.cs.reconfiguration.testing.TESTReconfigurationClient"/>
       <formatter type="plain" usefile="false"/>
