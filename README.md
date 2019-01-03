@@ -11,7 +11,7 @@ of paxos, we can forget about replication and just coordinate between services.
 
 ## Implementation
 
-A jar of gigapaxos with the patch required to run has to copied into the lib directory.
+A jar of gigapaxos with the patch(https://github.com/MobilityFirst/gigapaxos/pull/38/commits) required to run has to copied into the lib directory.
 Please note to ENABLE_TRANSACTIONS(true) and that the Transaction wrapper class is 
 "edu.umass.cs.transaction.DistTransactor"
 
